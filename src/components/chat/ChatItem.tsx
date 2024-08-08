@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { coldarkDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import MarkdownRenderer  from "./MarkdownRenderer.tsx";
+import { useId } from "react";
 
 function extractCodeFromString(message: string) {
   if (message.includes("```")) {
@@ -50,7 +51,7 @@ const ChatItem = ({
       <Avatar sx={{ ml: "0", bgcolor: "black" }}>
         <img src="Shayak_logo1.png" alt="shayak-logo" width={"30px"} />
       </Avatar>
-      <Box>
+      <Box key={useId()}>
         {!messageBlocks && (
           // <Typography sx={{ fontSize: "20px" }}>{content}</Typography>
           <MarkdownRenderer markdownText={content}/>

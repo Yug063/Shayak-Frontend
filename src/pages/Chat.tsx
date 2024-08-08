@@ -61,6 +61,8 @@ const Chat = () => {
       return navigate("/login");
     }
   }, [auth]);
+  // console.log(typeof auth?.user?.name);
+
   return (
     <Box
       sx={{
@@ -99,8 +101,12 @@ const Chat = () => {
               fontWeight: 700,
             }}
           >
-            {auth?.user?.name[0]}
-            {auth?.user?.name.split(" ")[1][0]}
+            {typeof auth?.user?.name !== typeof undefined
+              ? auth?.user?.name[0]
+              : "X"}
+            {typeof auth?.user?.name !== typeof undefined
+              ? auth?.user?.name.split(" ")[1][0]
+              : "YT"}
           </Avatar>
           <Typography sx={{ mx: "auto", fontFamily: "work sans" }}>
             You are talking to a ChatBOT

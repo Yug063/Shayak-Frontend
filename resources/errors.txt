@@ -1,0 +1,16 @@
+jab bhi dikkat 
+
+
+
+
+
+
+
+
+
+
+git init
+git remote add origin https://github.com/Yug063/Shayak-Frontend.git
+- local <--------> remote (Shayak-Frontend.git)
+git push --set-upstream origin master
+- to connect origin with master branch upstream (upstream means it will pull/push from here)

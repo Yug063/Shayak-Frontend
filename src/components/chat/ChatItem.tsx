@@ -3,6 +3,8 @@ import { Box, Avatar, Typography } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { coldarkDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import MarkdownRenderer  from "./MarkdownRenderer.tsx";
+import { useId } from "react";
 
 function extractCodeFromString(message: string) {
   if (message.includes("```")) {
@@ -49,9 +51,10 @@ const ChatItem = ({
       <Avatar sx={{ ml: "0", bgcolor: "black" }}>
         <img src="Shayak_logo1.png" alt="shayak-logo" width={"30px"} />
       </Avatar>
-      <Box>
+      <Box key={useId()}>
         {!messageBlocks && (
-          <Typography sx={{ fontSize: "20px" }}>{content}</Typography>
+          // <Typography sx={{ fontSize: "20px" }}>{content}</Typography>
+          <MarkdownRenderer markdownText={content}/>
         )}
         {messageBlocks &&
           messageBlocks.length &&
@@ -77,8 +80,12 @@ const ChatItem = ({
       }}
     >
       <Avatar sx={{ ml: "0", bgcolor: "black", color: "white" }}>
-        {auth?.user?.name[0]}
-        {auth?.user?.name.split(" ")[1][0]}
+        {typeof auth?.user?.name !== typeof undefined
+          ? auth?.user?.name[0]
+          : "X"}
+        {typeof auth?.user?.name !== typeof undefined
+          ? auth?.user?.name.split(" ")[1][0]
+          : "YT"}
       </Avatar>
       <Box>
         {!messageBlocks && (
@@ -101,5 +108,3 @@ const ChatItem = ({
 };
 
 export default ChatItem;
-
-
